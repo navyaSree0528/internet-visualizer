@@ -6,39 +6,34 @@ import DetailsPanel from "../panels/DetailsPanel";
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Page Container */}
-      <div className="mx-auto flex min-h-screen max-w-[1700px] flex-col p-6">
+    <div
+      className="min-h-screen p-6"
+      style={{ background: "var(--bg)" }}
+    >
+      <div className="mx-auto flex max-w-[1700px] flex-col gap-5">
 
         {/* Header */}
         <Header />
 
-        {/* URL Bar */}
-        <div className="mt-6">
-          <UrlBar />
-        </div>
+        {/* URL */}
+        <UrlBar />
 
-        {/* Main Content */}
-        <div className="mt-6 flex flex-1 gap-6">
-
+        {/* Main Workspace */}
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "260px 1fr 340px",
+            minHeight: "72vh",
+          }}
+        >
           {/* Sidebar */}
-          <aside className="w-72">
-            <Sidebar />
-          </aside>
+          <Sidebar />
 
           {/* Visualization */}
-          <main className="flex flex-1 flex-col gap-6">
+          <Visualization />
 
-            <section className="flex-1">
-              <Visualization />
-            </section>
-
-            <section className="h-72">
-              <DetailsPanel />
-            </section>
-
-          </main>
-
+          {/* Details */}
+          <DetailsPanel />
         </div>
 
       </div>
