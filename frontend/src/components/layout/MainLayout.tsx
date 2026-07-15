@@ -3,8 +3,31 @@ import UrlBar from "./UrlBar";
 import Sidebar from "../sidebar/Sidebar";
 import Visualization from "../visualization/Visualization";
 import DetailsPanel from "../panels/DetailsPanel";
+import type { Dispatch, SetStateAction } from "react";
 
-export default function MainLayout() {
+interface MainLayoutProps {
+  url: string;
+  setUrl: Dispatch<SetStateAction<string>>;
+
+  activeStage: number;
+
+  selectedStage: number;
+  setSelectedStage: Dispatch<SetStateAction<number>>;
+
+  simulationRunning: boolean;
+
+  startSimulation: () => Promise<void>;
+}
+
+export default function MainLayout({
+  url,
+  setUrl,
+  activeStage,
+  selectedStage,
+  setSelectedStage,
+  simulationRunning,
+  startSimulation,
+}: MainLayoutProps) {
   return (
     <div
       className="min-h-screen p-6"
@@ -17,7 +40,12 @@ export default function MainLayout() {
         <Header />
 
         {/* URL Bar */}
-        <UrlBar />
+        <UrlBar
+          url={url}
+          setUrl={setUrl}
+          simulationRunning={simulationRunning}
+          startSimulation={startSimulation}
+        />
 
         {/* Main Workspace */}
         <div
@@ -28,13 +56,21 @@ export default function MainLayout() {
           }}
         >
           {/* Sidebar */}
-          <Sidebar />
+          <Sidebar
+            activeStage={activeStage}
+            selectedStage={selectedStage}
+            setSelectedStage={setSelectedStage}
+          />
 
           {/* Visualization */}
-          <Visualization />
+          <Visualization
+            activeStage={activeStage}
+          />
 
           {/* Details Panel */}
-          <DetailsPanel />
+          <DetailsPanel
+            activeStage={activeStage}
+          />
         </div>
       </div>
     </div>

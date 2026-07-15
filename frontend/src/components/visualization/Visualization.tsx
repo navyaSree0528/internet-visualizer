@@ -1,7 +1,13 @@
 import FlowNode from "./FlowNode";
 import { networkStages } from "../../data/networkStages";
 
-export default function Visualization() {
+interface VisualizationProps {
+  activeStage: number;
+}
+
+export default function Visualization({
+  activeStage,
+}: VisualizationProps) {
   return (
     <section
       className="h-full rounded-3xl border"
@@ -50,7 +56,7 @@ export default function Visualization() {
             title={stage.title}
             description={stage.description}
             icon={stage.icon}
-            active={index === 0}
+            active={index === activeStage}
           />
         ))}
       </div>
