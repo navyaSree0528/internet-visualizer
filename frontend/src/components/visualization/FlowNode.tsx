@@ -44,36 +44,75 @@ export default function FlowNode({
   const Icon = icons[icon];
 
   return (
-    <div
-      className={`w-64 rounded-2xl border p-5 transition-all duration-300 ${
-        active ? "scale-105" : ""
-      }`}
-      style={{
-        background: "var(--surface)",
-        borderColor: active ? "var(--primary)" : "var(--border)",
-        boxShadow: active
-          ? "0 12px 35px rgba(149,39,29,.15)"
-          : "0 8px 24px var(--shadow)",
-      }}
-    >
-      <div className="flex items-center gap-4">
-        <div
-          className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300"
-          style={{
-            background: active
-              ? "var(--primary)"
-              : "rgba(231,123,73,0.12)",
-          }}
-        >
-          <Icon
-            size={22}
-            color={active ? "white" : "var(--primary)"}
-          />
+    <div className="relative flex flex-col items-center">
+      {/* Connection Line */}
+      <div
+        className="absolute top-full h-10 w-1 rounded-full transition-all duration-500"
+        style={{
+          background: active
+            ? "var(--primary)"
+            : "var(--border)",
+        }}
+      />
+
+      {/* Card */}
+      <div
+        className={`w-72 rounded-2xl border p-5 transition-all duration-500 ${
+          active
+            ? "scale-105 shadow-2xl"
+            : "hover:scale-[1.02]"
+        }`}
+        style={{
+          background: "var(--surface)",
+          borderColor: active
+            ? "var(--primary)"
+            : "var(--border)",
+          boxShadow: active
+            ? "0 20px 45px rgba(191,109,69,0.25)"
+            : "0 10px 25px var(--shadow)",
+        }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          {/* Icon */}
+          <div
+            className={`flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-500 ${
+              active ? "animate-pulse" : ""
+            }`}
+            style={{
+              background: active
+                ? "var(--primary)"
+                : "rgba(191,109,69,0.12)",
+            }}
+          >
+            <Icon
+              size={26}
+              color={
+                active ? "#fff" : "var(--primary)"
+              }
+            />
+          </div>
+
+          {/* Status */}
+          <span
+            className="rounded-full px-3 py-1 text-xs font-semibold"
+            style={{
+              background: active
+                ? "rgba(34,197,94,.12)"
+                : "rgba(148,163,184,.12)",
+              color: active
+                ? "#16a34a"
+                : "#64748b",
+            }}
+          >
+            {active ? "ACTIVE" : "WAITING"}
+          </span>
         </div>
 
-        <div>
+        {/* Content */}
+        <div className="mt-5">
           <h3
-            className="font-semibold"
+            className="text-lg font-semibold transition-all"
             style={{
               color: active
                 ? "var(--primary-dark)"
@@ -84,13 +123,41 @@ export default function FlowNode({
           </h3>
 
           <p
-            className="mt-1 text-sm"
+            className="mt-2 text-sm leading-6"
             style={{
               color: "var(--text-light)",
             }}
           >
             {description}
           </p>
+        </div>
+
+        {/* Footer */}
+        <div
+          className="mt-5 flex items-center justify-between border-t pt-4"
+          style={{
+            borderColor: "var(--border)",
+          }}
+        >
+          <span
+            className="text-xs uppercase tracking-wider"
+            style={{
+              color: "var(--text-light)",
+            }}
+          >
+            Network Stage
+          </span>
+
+          <span
+            className="text-sm font-semibold"
+            style={{
+              color: active
+                ? "var(--primary)"
+                : "var(--text)",
+            }}
+          >
+            {active ? "Running..." : "Pending"}
+          </span>
         </div>
       </div>
     </div>

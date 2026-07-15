@@ -21,13 +21,13 @@ export default function DetailsPanel({
     >
       {/* Header */}
       <div
-        className="border-b px-6 py-4"
+        className="border-b px-6 py-5"
         style={{
           borderColor: "var(--border)",
         }}
       >
         <h2
-          className="text-lg font-semibold"
+          className="text-xl font-semibold"
           style={{
             color: "var(--primary-dark)",
           }}
@@ -41,119 +41,117 @@ export default function DetailsPanel({
             color: "var(--text-light)",
           }}
         >
-          Information about the currently active networking stage.
+          Live information for the current networking stage.
         </p>
       </div>
 
-      {/* Content */}
-      <div className="p-6">
-        {!stage ? (
-          <div className="flex h-[500px] items-center justify-center">
-            <div className="text-center">
-              <div
-                className="mb-4 text-6xl"
-                style={{
-                  color: "var(--accent)",
-                }}
-              >
-                ◎
-              </div>
+      {!stage ? (
+        <div className="flex h-[650px] items-center justify-center p-8">
+          <div className="text-center">
+            <h3
+              className="text-xl font-semibold"
+              style={{
+                color: "var(--primary-dark)",
+              }}
+            >
+              Ready
+            </h3>
 
-              <h3
-                className="text-lg font-medium"
-                style={{
-                  color: "var(--primary-dark)",
-                }}
-              >
-                Ready to Start
-              </h3>
-
-              <p
-                className="mt-2 text-sm"
-                style={{
-                  color: "var(--text-light)",
-                }}
-              >
-                Click <strong>Analyze</strong> to begin the
-                visualization.
-              </p>
-            </div>
+            <p
+              className="mt-3 leading-7"
+              style={{
+                color: "var(--text-light)",
+              }}
+            >
+              Press <strong>Analyze</strong> to start the
+              visualization.
+            </p>
           </div>
-        ) : (
-          <div className="space-y-6">
-            <div>
-              <h3
-                className="text-2xl font-semibold"
-                style={{
-                  color: "var(--primary-dark)",
-                }}
-              >
-                {stage.title}
-              </h3>
+        </div>
+      ) : (
+        <div className="space-y-6 p-6">
+          {/* Title */}
+          <div>
+            <h3
+              className="text-2xl font-bold"
+              style={{
+                color: "var(--primary-dark)",
+              }}
+            >
+              {stage.title}
+            </h3>
 
-              <p
-                className="mt-2"
-                style={{
-                  color: "var(--text-light)",
-                }}
-              >
-                {stage.description}
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <InfoRow
-                label="Status"
-                value="Completed"
-              />
-
-              <InfoRow
-                label="Protocol"
-                value={
-                  [
-                    "Browser",
-                    "DNS",
-                    "TCP",
-                    "TLS",
-                    "HTTP",
-                    "HTTP",
-                    "HTTP",
-                    "HTTP",
-                    "Redis",
-                    "SQL",
-                    "HTTP",
-                  ][activeStage]
-                }
-              />
-
-              <InfoRow
-                label="Latency"
-                value={`${(activeStage + 1) * 12} ms`}
-              />
-
-              <InfoRow
-                label="Stage"
-                value={`${activeStage + 1} / ${
-                  networkStages.length
-                }`}
-              />
-            </div>
+            <p
+              className="mt-2 leading-7"
+              style={{
+                color: "var(--text-light)",
+              }}
+            >
+              {stage.description}
+            </p>
           </div>
-        )}
-      </div>
+
+          {/* Status */}
+          <InfoCard
+            title="Status"
+            value="Completed"
+          />
+
+          <InfoCard
+            title="Protocol"
+            value={stage.protocol}
+          />
+
+          <InfoCard
+            title="Port"
+            value={stage.port}
+          />
+
+          <InfoCard
+            title="Latency"
+            value={stage.latency}
+          />
+
+          {/* Explanation */}
+          <div
+            className="rounded-xl border p-5"
+            style={{
+              borderColor: "var(--border)",
+            }}
+          >
+            <h4
+              className="mb-3 font-semibold"
+              style={{
+                color: "var(--primary-dark)",
+              }}
+            >
+              Explanation
+            </h4>
+
+            <p
+              className="leading-7"
+              style={{
+                color: "var(--text-light)",
+              }}
+            >
+              {stage.explanation}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
-interface InfoRowProps {
-  label: string;
+interface InfoCardProps {
+  title: string;
   value: string;
 }
 
-function InfoRow({
-  label,
+function InfoCard({
+  title,
   value,
-}: InfoRowProps) {
+}: InfoCardProps) {
   return (
     <div
       className="flex items-center justify-between rounded-xl border p-4"
@@ -166,7 +164,7 @@ function InfoRow({
           color: "var(--text-light)",
         }}
       >
-        {label}
+        {title}
       </span>
 
       <span
