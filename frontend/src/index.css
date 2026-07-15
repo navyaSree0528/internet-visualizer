@@ -1,42 +1,55 @@
 @import "tailwindcss";
 
+/* ===========================
+   Theme Colors
+=========================== */
+
 :root {
   /* Backgrounds */
-  --bg: #f6f3ee;
-  --surface: #ffffff;
-  --surface-hover: #fbfaf8;
+  --bg: #FAF8F6;
+  --surface: #FFFFFF;
+
+  /* Brand Colors */
+  --primary: #95271D;
+  --primary-dark: #60241E;
+  --accent: #B34A44;
+  --highlight: #E77B49;
 
   /* Text */
-  --text: #2f2a24;
-  --text-light: #7b746d;
-
-  /* Brand */
-  --primary: #bf6d45;
-  --primary-hover: #ab5f3a;
-
-  /* Status */
-  --success: #8e9b63;
-  --warning: #d9a441;
-  --danger: #d06b6b;
+  --text: #2D2A29;
+  --text-secondary: #6E6864;
 
   /* Borders */
-  --border: #e8e1d8;
+  --border: #E7DFDA;
 
-  /* Shadows */
-  --shadow: rgba(0, 0, 0, 0.06);
+  /* Status */
+  --success: #5E8B58;
+  --text-light: #6E6864;
+  --shadow: rgba(96, 36, 30, 0.08);
 }
 
-* {
+/* ===========================
+   Global Reset
+=========================== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-  margin: 0;
   width: 100%;
   min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+/* ===========================
+   Body
+=========================== */
 
 body {
   background: var(--bg);
@@ -44,27 +57,102 @@ body {
   font-family:
     Inter,
     system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* ===========================
+   Typography
+=========================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+/* ===========================
+   Buttons & Inputs
+=========================== */
+
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
 button {
   cursor: pointer;
+  border: none;
+  outline: none;
 }
+
+input {
+  outline: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* ===========================
+   Links
+=========================== */
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* ===========================
+   Selection
+=========================== */
+
+::selection {
+  background: var(--highlight);
+  color: white;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
 
 ::-webkit-scrollbar {
   width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d8cec2;
-  border-radius: 999px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }

@@ -8,19 +8,20 @@ export default function MainLayout() {
   return (
     <div
       className="min-h-screen p-6"
-      style={{ background: "var(--bg)" }}
+      style={{
+        background: "var(--bg)",
+      }}
     >
-      <div className="mx-auto flex max-w-[1700px] flex-col gap-5">
-
+      <div className="mx-auto flex max-w-[1700px] flex-col gap-6">
         {/* Header */}
         <Header />
 
-        {/* URL */}
+        {/* URL Bar */}
         <UrlBar />
 
         {/* Main Workspace */}
         <div
-          className="grid gap-5"
+          className="grid gap-6"
           style={{
             gridTemplateColumns: "260px 1fr 340px",
             minHeight: "72vh",
@@ -32,10 +33,9 @@ export default function MainLayout() {
           {/* Visualization */}
           <Visualization />
 
-          {/* Details */}
+          {/* Details Panel */}
           <DetailsPanel />
         </div>
-
       </div>
     </div>
   );

@@ -49,45 +49,49 @@ export default function FlowNode({
         active ? "scale-105" : ""
       }`}
       style={{
-        background: active ? "#FFF4EA" : "white",
-        borderColor: active ? "#E8A07C" : "#E6DED2",
+        background: "var(--surface)",
+        borderColor: active ? "var(--primary)" : "var(--border)",
         boxShadow: active
-          ? "0 12px 35px rgba(232,160,124,.25)"
-          : "0 8px 24px rgba(0,0,0,.05)",
+          ? "0 12px 35px rgba(149,39,29,.15)"
+          : "0 8px 24px var(--shadow)",
       }}
     >
       <div className="flex items-center gap-4">
-
         <div
-          className="flex h-12 w-12 items-center justify-center rounded-xl"
+          className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300"
           style={{
-            background: active ? "#E8A07C" : "#F5F2ED",
+            background: active
+              ? "var(--primary)"
+              : "rgba(231,123,73,0.12)",
           }}
         >
           <Icon
             size={22}
-            color={active ? "white" : "#827148"}
+            color={active ? "white" : "var(--primary)"}
           />
         </div>
 
         <div>
-
           <h3
             className="font-semibold"
-            style={{ color: "#2E2A25" }}
+            style={{
+              color: active
+                ? "var(--primary-dark)"
+                : "var(--text)",
+            }}
           >
             {title}
           </h3>
 
           <p
             className="mt-1 text-sm"
-            style={{ color: "#80786D" }}
+            style={{
+              color: "var(--text-light)",
+            }}
           >
             {description}
           </p>
-
         </div>
-
       </div>
     </div>
   );
