@@ -66,10 +66,6 @@ npm run dev
 
 Then open the local Vite URL shown in the terminal.
 
-## Resume-ready description
-
-**Internet Visualizer — React, JavaScript, SVG**  
-Built an interactive web-request lifecycle simulator that visualizes URL parsing, DNS resolution, TCP/TLS handshakes, HTTP communication, load balancing, Redis caching, database access and browser rendering using animated SVG packet flows and stage-based explanations.
 
 ## Live functionality
 
